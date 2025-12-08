@@ -121,7 +121,13 @@ export const Header = () => {
     setIsMobileMenuOpen(false);
     
     if (isRoute) {
-      navigate(href);
+      // For Home link, always navigate and scroll to top
+      if (href === '/') {
+        navigate('/');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        navigate(href);
+      }
     } else {
       // Handle hash links - if on home page, scroll to section
       if (location.pathname === '/') {
