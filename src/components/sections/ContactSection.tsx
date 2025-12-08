@@ -142,7 +142,7 @@ export const ContactSection = () => {
                   href="tel:+918431576033"
                   className="text-muted-foreground hover:text-primary transition-colors text-sm leading-relaxed block"
                 >
-                  +91 84315<br />76033
+                  +91 84315 76033
                 </a>
               </motion.div>
 
@@ -164,7 +164,7 @@ export const ContactSection = () => {
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-primary transition-colors text-sm leading-relaxed block"
                 >
-                  4.9 ★ • 366 Google reviews
+                  4.9 <span className="text-yellow-500">★</span> • 500+ Google reviews
                 </a>
               </motion.div>
             </motion.div>

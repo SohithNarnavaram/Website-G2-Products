@@ -1,4 +1,5 @@
 import { Instagram, Youtube, Twitter, Facebook, Mail, Phone, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const quickLinks = [
   { name: 'Action Cameras', href: '#products' },
@@ -30,12 +31,16 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-heading font-bold text-xl">G2</span>
-              </div>
-              <span className="font-heading font-bold text-xl text-foreground">PRODUCTS</span>
-            </div>
+            <Link to="/" className="flex items-center gap-3 mb-6">
+              <img
+                src="/g2.jpg"
+                alt="G2 Products"
+                className="w-10 h-10 object-cover border border-border/60"
+              />
+              <span className="font-heading font-bold text-xl text-foreground">
+                PRODUCTS
+              </span>
+            </Link>
             <p className="text-muted-foreground mb-6 leading-relaxed">
               India's most trusted store for MotoVlogging & Creator Gear. Premium products, genuine quality.
             </p>
@@ -116,7 +121,7 @@ export const Footer = () => {
         {/* Bottom */}
         <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-muted-foreground text-sm">
-            © 2024 G2 Products. All rights reserved.
+            © 2022 G2 Products. All rights reserved.
           </p>
           <p className="text-muted-foreground text-sm">
             Made with ❤️ for Creators
