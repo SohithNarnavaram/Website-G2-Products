@@ -15,6 +15,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CartDrawer } from "@/components/cart/CartDrawer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { FloatingCartButton } from "@/components/FloatingCartButton";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -102,6 +103,7 @@ const Product = () => {
         </main>
         <Footer />
         <CartDrawer />
+        <FloatingCartButton />
         <WhatsAppButton />
       </div>
     );
@@ -427,10 +429,12 @@ const Product = () => {
 
       <Footer />
       <CartDrawer />
+      <FloatingCartButton />
       <WhatsAppButton />
     </div>
   );
 };
 
 export default Product;
+
 

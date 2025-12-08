@@ -6,6 +6,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CartDrawer } from '@/components/cart/CartDrawer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
+import { FloatingCartButton } from '@/components/FloatingCartButton';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -111,9 +112,55 @@ const Store = () => {
               <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
                 Shop All Products
               </h1>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-8">
                 Premium gear for creators, riders & storytellers. 100% genuine products.
               </p>
+              
+              {/* Category Filters */}
+              <div className="w-full mt-6 overflow-hidden">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="flex flex-nowrap items-center gap-3 overflow-x-auto pb-4 scrollbar-hide px-4 -mx-4"
+                  style={{ 
+                    scrollbarWidth: 'none', 
+                    msOverflowStyle: 'none',
+                    scrollPaddingLeft: '1rem',
+                    scrollPaddingRight: '1rem'
+                  }}
+                >
+                  {categories.filter(cat => cat !== 'All').map((category, index, array) => {
+                    const isActive = selectedCategory === category;
+                    const categoryCount = products.filter(p => p.category === category).length;
+                    const isFirst = index === 0;
+                    const isLast = index === array.length - 1;
+                    
+                    return (
+                      <button
+                        key={category}
+                        onClick={() => setSelectedCategory(isActive ? 'All' : category)}
+                        className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap flex-shrink-0 ${
+                          isFirst ? 'ml-0' : ''
+                        } ${isLast ? 'mr-4' : ''} ${
+                          isActive
+                            ? 'bg-primary text-primary-foreground shadow-lg scale-105'
+                            : 'bg-card border border-border text-muted-foreground hover:border-primary hover:text-primary hover:bg-primary/10'
+                        }`}
+                      >
+                        {category}
+                        {categoryCount > 0 && (
+                          <span className={`ml-2 px-1.5 py-0.5 rounded-full text-xs ${
+                            isActive ? 'bg-primary-foreground/20' : 'bg-secondary'
+                          }`}>
+                            {categoryCount}
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </motion.div>
+              </div>
             </motion.div>
           </div>
         </section>
@@ -370,6 +417,7 @@ const Store = () => {
 
       <Footer />
       <CartDrawer />
+      <FloatingCartButton />
       <WhatsAppButton />
     </div>
   );

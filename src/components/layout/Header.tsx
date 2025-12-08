@@ -111,7 +111,12 @@ export const Header = () => {
 
           {/* Right Actions */}
           <div className="flex items-center gap-4">
-            <Button variant="ghost" size="icon" className="hidden md:flex text-white hover:text-primary" asChild>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="hidden md:flex text-white hover:text-primary rounded-full bg-white/10 border border-white/20 hover:bg-white/20 hover:border-white/30 backdrop-blur-sm" 
+              asChild
+            >
               <Link to="/store">
                 <Search className="w-5 h-5" />
               </Link>
@@ -120,7 +125,7 @@ export const Header = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="relative text-white hover:text-primary"
+              className="relative text-white hover:text-primary rounded-full bg-white/10 border border-white/20 hover:bg-white/20 hover:border-white/30 backdrop-blur-sm"
               onClick={() => setIsOpen(true)}
             >
               <ShoppingCart className="w-5 h-5" />

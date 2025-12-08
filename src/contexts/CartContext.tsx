@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 export interface CartItem {
   id: string;
@@ -22,9 +22,38 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
+const CART_STORAGE_KEY = 'g2-cart-items';
+
+// Load cart from sessionStorage
+const loadCartFromStorage = (): CartItem[] => {
+  if (typeof window === 'undefined') return [];
+  try {
+    const stored = sessionStorage.getItem(CART_STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch (error) {
+    console.error('Error loading cart from storage:', error);
+    return [];
+  }
+};
+
+// Save cart to sessionStorage
+const saveCartToStorage = (items: CartItem[]) => {
+  if (typeof window === 'undefined') return;
+  try {
+    sessionStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
+  } catch (error) {
+    console.error('Error saving cart to storage:', error);
+  }
+};
+
 export const CartProvider = ({ children }: { children: ReactNode }) => {
-  const [items, setItems] = useState<CartItem[]>([]);
+  const [items, setItems] = useState<CartItem[]>(loadCartFromStorage);
   const [isOpen, setIsOpen] = useState(false);
+
+  // Save to sessionStorage whenever items change
+  useEffect(() => {
+    saveCartToStorage(items);
+  }, [items]);
 
   const addItem = (item: Omit<CartItem, 'quantity'>) => {
     setItems((prev) => {
@@ -53,7 +82,12 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     );
   };
 
-  const clearCart = () => setItems([]);
+  const clearCart = () => {
+    setItems([]);
+    if (typeof window !== 'undefined') {
+      sessionStorage.removeItem(CART_STORAGE_KEY);
+    }
+  };
 
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = items.reduce((sum, item) => sum + item.price * item.quantity, 0);

@@ -92,7 +92,7 @@ export const Footer = () => {
             <h4 className="font-heading font-bold text-foreground mb-6">Contact Us</h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-primary mt-0.5" />
+                <MapPin className="w-6 h-6 text-primary mt-0.5 flex-shrink-0" />
                 <span className="text-muted-foreground">
                   3rd floor, No 11 RS Lane Nagarthpete, Opp. Ram Medical Store, Gollarpet, Kumbarpet, Dodpete, Nagarathpete, Bengaluru, Karnataka 560002, India
                 </span>

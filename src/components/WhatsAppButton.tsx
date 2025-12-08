@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { MessageCircle } from 'lucide-react';
 
 export const WhatsAppButton = () => {
   const whatsappNumber = '918431576033';
@@ -15,10 +14,14 @@ export const WhatsAppButton = () => {
       animate={{ scale: 1 }}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className="fixed bottom-6 right-6 z-40 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow"
+      className="fixed bottom-6 right-6 z-40 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow overflow-hidden"
       aria-label="Chat on WhatsApp"
     >
-      <MessageCircle className="w-7 h-7 text-white fill-white" />
+      <img 
+        src="/whatsapp-logo.png" 
+        alt="WhatsApp" 
+        className="w-8 h-8 object-contain"
+      />
       <motion.span
         animate={{ scale: [1, 1.2, 1] }}
         transition={{ repeat: Infinity, duration: 2 }}

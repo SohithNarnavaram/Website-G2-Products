@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, MessageCircle, CheckCircle } from 'lucide-react';
+import { MessageCircle, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -43,6 +43,18 @@ const productInterests = [
 export const EnquirySection = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    mobile: '',
+    whatsapp: '',
+    creatorType: '',
+    budgetRange: '',
+    message: '',
+    requestCallback: false,
+  });
+
+  const whatsappNumber = '918431576033';
 
   const handleProductToggle = (product: string) => {
     setSelectedProducts((prev) =>
@@ -52,16 +64,149 @@ export const EnquirySection = () => {
     );
   };
 
+  const handleInputChange = (field: string, value: string | boolean) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const formatWhatsAppMessage = () => {
+    const parts: string[] = [];
+    
+    // Header - simplified without emojis that might cause encoding issues
+    parts.push('*New Enquiry from G2 Products Website*');
+    parts.push('');
+    
+    // Personal Information
+    parts.push('*Personal Information:*');
+    if (formData.name) parts.push(`Name: ${formData.name}`);
+    if (formData.email) parts.push(`Email: ${formData.email}`);
+    if (formData.mobile) parts.push(`Mobile: ${formData.mobile}`);
+    if (formData.whatsapp) parts.push(`WhatsApp: ${formData.whatsapp}`);
+    
+    // Enquiry Details
+    const hasEnquiryDetails = formData.creatorType || formData.budgetRange || selectedProducts.length > 0 || formData.message || formData.requestCallback;
+    
+    if (hasEnquiryDetails) {
+      parts.push('');
+      parts.push('*Enquiry Details:*');
+      
+      if (formData.creatorType) {
+        parts.push(`Creator Type: ${formData.creatorType}`);
+      }
+      
+      if (formData.budgetRange) {
+        parts.push(`Budget Range: ${formData.budgetRange}`);
+      }
+      
+      if (selectedProducts.length > 0) {
+        parts.push('');
+        parts.push(`*Interested Products:*`);
+        selectedProducts.forEach(product => {
+          parts.push(`- ${product}`);
+        });
+      }
+      
+      if (formData.message) {
+        parts.push('');
+        parts.push(`*Message:*`);
+        parts.push(formData.message);
+      }
+      
+      if (formData.requestCallback) {
+        parts.push('');
+        parts.push('*Request Callback: Yes*');
+      }
+    }
+    
+    parts.push('');
+    parts.push('Thank you!');
+    
+    return parts.join('\n');
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate required fields
+    if (!formData.name || !formData.email || !formData.mobile) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields (Name, Email, Mobile).",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Format and encode the WhatsApp message
+    let message = formatWhatsAppMessage();
+    
+    // Ensure message is not empty
+    if (!message || message.trim().length === 0) {
+      message = 'Hi! I have an enquiry about G2 Products.';
+    }
+    
+    const encodedMessage = encodeURIComponent(message);
+    
+    // Use wa.me URL format - most reliable for prefilled messages
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+    // Create a temporary anchor element and click it - more reliable than window.open
+    // This ensures WhatsApp opens with the prefilled message
+    const link = document.createElement('a');
+    link.href = whatsappUrl;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    document.body.appendChild(link);
+    link.click();
+    // Clean up after a short delay
+    setTimeout(() => {
+      if (document.body.contains(link)) {
+        document.body.removeChild(link);
+      }
+    }, 100);
+    
     setIsSubmitted(true);
     toast({
       title: "Enquiry Submitted!",
-      description: "Our team will contact you within 24 hours.",
+      description: "Opening WhatsApp with your enquiry details...",
     });
   };
 
-  const whatsappUrl = 'https://wa.me/919876543210?text=Hi! I need help choosing the right gear.';
+  const handleWhatsAppClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    // Format and encode the WhatsApp message with form data
+    let message = formatWhatsAppMessage();
+    
+    // Ensure message is not empty
+    if (!message || message.trim().length === 0) {
+      message = 'Hi! I have an enquiry about G2 Products.';
+    }
+    
+    const encodedMessage = encodeURIComponent(message);
+    
+    // Use wa.me URL format - most reliable for prefilled messages
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+    // Create a temporary anchor element and click it - more reliable than window.open
+    // This ensures WhatsApp opens with the prefilled message
+    const link = document.createElement('a');
+    link.href = whatsappUrl;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    document.body.appendChild(link);
+    link.click();
+    // Clean up after a short delay
+    setTimeout(() => {
+      if (document.body.contains(link)) {
+        document.body.removeChild(link);
+      }
+    }, 100);
+    
+    toast({
+      title: "Opening WhatsApp",
+      description: "Your enquiry details are ready to send!",
+    });
+  };
 
   if (isSubmitted) {
     return (
@@ -79,9 +224,22 @@ export const EnquirySection = () => {
               Thank You!
             </h2>
             <p className="text-muted-foreground text-lg mb-8">
-              Your enquiry has been submitted successfully. Our gear experts will contact you within 24 hours.
+              Your enquiry has been formatted and WhatsApp should open automatically. If it didn't open, please check your browser settings. Our gear experts will contact you soon!
             </p>
-            <Button variant="hero" onClick={() => setIsSubmitted(false)}>
+            <Button variant="hero" onClick={() => {
+              setIsSubmitted(false);
+              setFormData({
+                name: '',
+                email: '',
+                mobile: '',
+                whatsapp: '',
+                creatorType: '',
+                budgetRange: '',
+                message: '',
+                requestCallback: false,
+              });
+              setSelectedProducts([]);
+            }}>
               Submit Another Enquiry
             </Button>
           </motion.div>
@@ -123,32 +281,58 @@ export const EnquirySection = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div className="space-y-2">
                 <Label htmlFor="name">Name *</Label>
-                <Input id="name" placeholder="Your full name" required />
+                <Input 
+                  id="name" 
+                  placeholder="Your full name" 
+                  required 
+                  value={formData.name}
+                  onChange={(e) => handleInputChange('name', e.target.value)}
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email">Email *</Label>
-                <Input id="email" type="email" placeholder="your@email.com" required />
+                <Input 
+                  id="email" 
+                  type="email" 
+                  placeholder="your@email.com" 
+                  required 
+                  value={formData.email}
+                  onChange={(e) => handleInputChange('email', e.target.value)}
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="mobile">Mobile Number *</Label>
-                <Input id="mobile" type="tel" placeholder="+91 98765 43210" required />
+                <Input 
+                  id="mobile" 
+                  type="tel" 
+                  placeholder="+91 98765 43210" 
+                  required 
+                  value={formData.mobile}
+                  onChange={(e) => handleInputChange('mobile', e.target.value)}
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="whatsapp">WhatsApp Number</Label>
-                <Input id="whatsapp" type="tel" placeholder="+91 98765 43210" />
+                <Input 
+                  id="whatsapp" 
+                  type="tel" 
+                  placeholder="+91 98765 43210" 
+                  value={formData.whatsapp}
+                  onChange={(e) => handleInputChange('whatsapp', e.target.value)}
+                />
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div className="space-y-2">
                 <Label>What type of creator are you?</Label>
-                <Select>
+                <Select value={formData.creatorType} onValueChange={(value) => handleInputChange('creatorType', value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select your type" />
                   </SelectTrigger>
                   <SelectContent>
                     {creatorTypes.map((type) => (
-                      <SelectItem key={type} value={type.toLowerCase().replace(' ', '-')}>
+                      <SelectItem key={type} value={type}>
                         {type}
                       </SelectItem>
                     ))}
@@ -157,13 +341,13 @@ export const EnquirySection = () => {
               </div>
               <div className="space-y-2">
                 <Label>Budget Range</Label>
-                <Select>
+                <Select value={formData.budgetRange} onValueChange={(value) => handleInputChange('budgetRange', value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select budget" />
                   </SelectTrigger>
                   <SelectContent>
                     {budgetRanges.map((range) => (
-                      <SelectItem key={range} value={range.toLowerCase().replace(/[₹,\s]/g, '-')}>
+                      <SelectItem key={range} value={range}>
                         {range}
                       </SelectItem>
                     ))}
@@ -193,25 +377,47 @@ export const EnquirySection = () => {
               </div>
             </div>
 
-            <div className="mb-8">
+            <div className="mb-6">
               <Label htmlFor="message">Message</Label>
               <Textarea
                 id="message"
                 placeholder="Tell us more about your requirements, content goals, or any questions..."
                 className="mt-2 min-h-[120px]"
+                value={formData.message}
+                onChange={(e) => handleInputChange('message', e.target.value)}
               />
+            </div>
+
+            <div className="mb-8">
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="requestCallback"
+                  checked={formData.requestCallback}
+                  onCheckedChange={(checked) => setFormData((prev) => ({ ...prev, requestCallback: checked === true }))}
+                />
+                <label
+                  htmlFor="requestCallback"
+                  className="text-sm font-medium text-foreground cursor-pointer"
+                >
+                  Request Callback
+                </label>
+              </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button type="submit" variant="hero" size="lg" className="flex-1">
-                <Send className="w-5 h-5 mr-2" />
-                Submit Enquiry
+                <MessageCircle className="w-5 h-5 mr-2" />
+                Submit via WhatsApp
               </Button>
-              <Button type="button" variant="outline" size="lg" className="flex-1" asChild>
-                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="w-5 h-5 mr-2" />
-                  Chat on WhatsApp
-                </a>
+              <Button 
+                type="button" 
+                variant="outline" 
+                size="lg" 
+                className="flex-1"
+                onClick={handleWhatsAppClick}
+              >
+                <MessageCircle className="w-5 h-5 mr-2" />
+                Chat on WhatsApp
               </Button>
             </div>
           </form>

@@ -179,7 +179,7 @@ export const ContactSection = () => {
             >
               <Button variant="hero" size="lg" className="w-full" asChild>
                 <a
-                  href="https://wa.me/918431576033"
+                  href={`https://wa.me/918431576033?text=${encodeURIComponent('Hi! I\'d like to know more about G2 Products.')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2"
