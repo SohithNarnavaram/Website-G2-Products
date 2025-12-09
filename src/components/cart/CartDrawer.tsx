@@ -137,7 +137,7 @@ export const CartDrawer = () => {
             className="fixed right-0 top-0 h-full w-full max-w-md bg-card border-l border-border z-50 flex flex-col"
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-border">
+            <div className="flex items-center justify-between p-4 sm:p-6 border-b border-border">
               <div className="flex items-center gap-3">
                 {showCheckoutForm && (
                   <Button
@@ -150,11 +150,11 @@ export const CartDrawer = () => {
                   </Button>
                 )}
                 <ShoppingBag className="w-6 h-6 text-primary" />
-                <h2 className="font-heading font-bold text-xl text-foreground">
+                <h2 className="font-heading font-bold text-lg sm:text-xl text-foreground">
                   {showCheckoutForm ? 'Checkout Details' : 'Your Cart'}
                 </h2>
               </div>
-              <Button variant="ghost" size="icon" onClick={() => {
+              <Button variant="ghost" size="icon" className="touch-manipulation min-h-[44px] min-w-[44px]" onClick={() => {
                 setIsOpen(false);
                 setShowCheckoutForm(false);
               }}>
@@ -163,39 +163,39 @@ export const CartDrawer = () => {
             </div>
 
             {/* Content */}
-            <div className="flex-1 overflow-y-auto p-6">
+            <div className="flex-1 overflow-y-auto p-4 sm:p-6">
               {showCheckoutForm ? (
                 <form onSubmit={handleCheckoutSubmit} className="space-y-4">
-                  <p className="text-muted-foreground text-sm mb-6">
+                  <p className="text-muted-foreground text-xs sm:text-sm mb-4 sm:mb-6">
                     Please fill in your details to complete your order
                   </p>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="name">Name *</Label>
+                    <Label htmlFor="name" className="text-sm">Name *</Label>
                     <Input
                       id="name"
                       placeholder="Your full name"
                       required
                       value={formData.name}
                       onChange={(e) => handleInputChange('name', e.target.value)}
-                      className="bg-secondary border-border"
+                      className="bg-secondary border-border min-h-[44px] text-sm sm:text-base"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="email">Email</Label>
+                    <Label htmlFor="email" className="text-sm">Email</Label>
                     <Input
                       id="email"
                       type="email"
                       placeholder="your@email.com"
                       value={formData.email}
                       onChange={(e) => handleInputChange('email', e.target.value)}
-                      className="bg-secondary border-border"
+                      className="bg-secondary border-border min-h-[44px] text-sm sm:text-base"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="phone">Phone Number *</Label>
+                    <Label htmlFor="phone" className="text-sm">Phone Number *</Label>
                     <Input
                       id="phone"
                       type="tel"
@@ -203,63 +203,63 @@ export const CartDrawer = () => {
                       required
                       value={formData.phone}
                       onChange={(e) => handleInputChange('phone', e.target.value)}
-                      className="bg-secondary border-border"
+                      className="bg-secondary border-border min-h-[44px] text-sm sm:text-base"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="address">Address *</Label>
+                    <Label htmlFor="address" className="text-sm">Address *</Label>
                     <Textarea
                       id="address"
                       placeholder="Street address, apartment, suite, etc."
                       required
                       value={formData.address}
                       onChange={(e) => handleInputChange('address', e.target.value)}
-                      className="bg-secondary border-border min-h-[80px]"
+                      className="bg-secondary border-border min-h-[80px] text-sm sm:text-base"
                     />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="city">City</Label>
+                      <Label htmlFor="city" className="text-sm">City</Label>
                       <Input
                         id="city"
                         placeholder="City"
                         value={formData.city}
                         onChange={(e) => handleInputChange('city', e.target.value)}
-                        className="bg-secondary border-border"
+                        className="bg-secondary border-border min-h-[44px] text-sm sm:text-base"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="pincode">Pincode</Label>
+                      <Label htmlFor="pincode" className="text-sm">Pincode</Label>
                       <Input
                         id="pincode"
                         placeholder="Pincode"
                         value={formData.pincode}
                         onChange={(e) => handleInputChange('pincode', e.target.value)}
-                        className="bg-secondary border-border"
+                        className="bg-secondary border-border min-h-[44px] text-sm sm:text-base"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="notes">Additional Notes (Optional)</Label>
+                    <Label htmlFor="notes" className="text-sm">Additional Notes (Optional)</Label>
                     <Textarea
                       id="notes"
                       placeholder="Any special instructions or requests..."
                       value={formData.notes}
                       onChange={(e) => handleInputChange('notes', e.target.value)}
-                      className="bg-secondary border-border min-h-[80px]"
+                      className="bg-secondary border-border min-h-[80px] text-sm sm:text-base"
                     />
                   </div>
 
                   <Button
                     type="submit"
                     variant="hero"
-                    className="w-full mt-6"
+                    className="w-full mt-4 sm:mt-6 min-h-[44px] touch-manipulation text-sm sm:text-base"
                     size="lg"
                   >
-                    <MessageCircle className="w-5 h-5 mr-2" />
+                    <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                     Submit via WhatsApp
                   </Button>
                 </form>
@@ -283,32 +283,32 @@ export const CartDrawer = () => {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, x: -100 }}
-                      className="flex gap-4 p-4 rounded-xl bg-secondary/50 border border-border"
+                      className="flex gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg sm:rounded-xl bg-secondary/50 border border-border"
                     >
                       <img
                         src={item.image}
                         alt={item.name}
-                        className="w-20 h-20 object-cover rounded-lg"
+                        className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-lg flex-shrink-0"
                       />
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-foreground mb-1">{item.name}</h3>
-                        <p className="text-primary font-bold">₹{item.price.toLocaleString()}</p>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold text-sm sm:text-base text-foreground mb-1 line-clamp-2">{item.name}</h3>
+                        <p className="text-primary font-bold text-sm sm:text-base">₹{item.price.toLocaleString()}</p>
                         <div className="flex items-center gap-2 mt-2">
                           <Button
                             variant="outline"
                             size="icon"
-                            className="h-8 w-8"
+                            className="h-8 w-8 sm:h-9 sm:w-9 touch-manipulation"
                             onClick={() => updateQuantity(item.id, item.quantity - 1)}
                           >
                             <Minus className="w-3 h-3" />
                           </Button>
-                          <span className="w-8 text-center font-semibold text-foreground">
+                          <span className="w-8 text-center font-semibold text-xs sm:text-sm text-foreground">
                             {item.quantity}
                           </span>
                           <Button
                             variant="outline"
                             size="icon"
-                            className="h-8 w-8"
+                            className="h-8 w-8 sm:h-9 sm:w-9 touch-manipulation"
                             onClick={() => updateQuantity(item.id, item.quantity + 1)}
                           >
                             <Plus className="w-3 h-3" />
@@ -316,7 +316,7 @@ export const CartDrawer = () => {
                           <Button
                             variant="ghost"
                             size="icon"
-                            className="h-8 w-8 ml-auto text-destructive hover:text-destructive"
+                            className="h-8 w-8 sm:h-9 sm:w-9 ml-auto text-destructive hover:text-destructive touch-manipulation"
                             onClick={() => removeItem(item.id)}
                           >
                             <Trash2 className="w-4 h-4" />
@@ -331,16 +331,16 @@ export const CartDrawer = () => {
 
             {/* Footer */}
             {items.length > 0 && !showCheckoutForm && (
-              <div className="p-6 border-t border-border space-y-4">
+              <div className="p-4 sm:p-6 border-t border-border space-y-3 sm:space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Subtotal</span>
-                  <span className="font-heading font-bold text-xl text-foreground">
+                  <span className="text-muted-foreground text-sm sm:text-base">Subtotal</span>
+                  <span className="font-heading font-bold text-lg sm:text-xl text-foreground">
                     ₹{totalPrice.toLocaleString()}
                   </span>
                 </div>
                 <Button 
                   variant="hero" 
-                  className="w-full" 
+                  className="w-full min-h-[44px] touch-manipulation text-sm sm:text-base" 
                   size="lg"
                   onClick={() => setShowCheckoutForm(true)}
                 >
@@ -348,7 +348,7 @@ export const CartDrawer = () => {
                 </Button>
                 <Button
                   variant="ghost"
-                  className="w-full text-muted-foreground"
+                  className="w-full text-muted-foreground min-h-[44px] touch-manipulation text-sm sm:text-base"
                   onClick={clearCart}
                 >
                   Clear Cart

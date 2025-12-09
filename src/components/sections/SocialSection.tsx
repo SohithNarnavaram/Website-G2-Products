@@ -15,27 +15,27 @@ const socialPosts = [
 
 export const SocialSection = () => {
   return (
-    <section id="social" className="py-24 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="social" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-background">
+      <div className="container mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-12 md:mb-16"
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-primary/20 text-primary text-sm font-semibold mb-4 border border-primary/30">
+          <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-primary/20 text-primary text-xs sm:text-sm font-semibold mb-3 sm:mb-4 border border-primary/30">
             📱 Community
           </span>
-          <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-3 sm:mb-4">
             From Our Community
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4">
             Follow us for creator tips, gear reviews & product updates
           </p>
         </motion.div>
 
         {/* Social Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-8 sm:mb-12">
           {socialPosts.map((post, index) => (
             <motion.a
               key={post.id}
@@ -45,7 +45,7 @@ export const SocialSection = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
               whileHover={{ scale: 1.05 }}
-              className="group relative aspect-square rounded-xl overflow-hidden"
+              className="group relative aspect-square rounded-lg sm:rounded-xl overflow-hidden touch-manipulation"
             >
               <img
                 src={post.image}
@@ -54,9 +54,9 @@ export const SocialSection = () => {
               />
               <div className="absolute inset-0 bg-background/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                 {post.type === 'instagram' ? (
-                  <Instagram className="w-8 h-8 text-foreground" />
+                  <Instagram className="w-6 h-6 sm:w-8 sm:h-8 text-foreground" />
                 ) : (
-                  <Youtube className="w-8 h-8 text-foreground" />
+                  <Youtube className="w-6 h-6 sm:w-8 sm:h-8 text-foreground" />
                 )}
               </div>
             </motion.a>
@@ -68,20 +68,20 @@ export const SocialSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-wrap items-center justify-center gap-4"
+          className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4"
         >
-          <Button variant="outline" size="lg" asChild>
-            <a href="https://www.instagram.com/g2_products?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-              <Instagram className="w-5 h-5" />
+          <Button variant="outline" size="lg" className="w-full sm:w-auto min-h-[44px] touch-manipulation text-sm sm:text-base" asChild>
+            <a href="https://www.instagram.com/g2_products?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+              <Instagram className="w-4 h-4 sm:w-5 sm:h-5" />
               Follow on Instagram
-              <ExternalLink className="w-4 h-4" />
+              <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
             </a>
           </Button>
-          <Button variant="outline" size="lg" asChild>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-              <Youtube className="w-5 h-5" />
+          <Button variant="outline" size="lg" className="w-full sm:w-auto min-h-[44px] touch-manipulation text-sm sm:text-base" asChild>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+              <Youtube className="w-4 h-4 sm:w-5 sm:h-5" />
               Subscribe on YouTube
-              <ExternalLink className="w-4 h-4" />
+              <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
             </a>
           </Button>
         </motion.div>

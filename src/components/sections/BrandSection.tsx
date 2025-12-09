@@ -10,46 +10,46 @@ const values = [
 
 export const BrandSection = () => {
   return (
-    <section id="brand" className="py-24 bg-g2-darker relative overflow-hidden">
+    <section id="brand" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-g2-darker relative overflow-hidden">
       {/* Animated gradient background */}
       <div className="absolute inset-0">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl animate-pulse" />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-12 md:mb-16"
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-primary/20 text-primary text-sm font-semibold mb-4 border border-primary/30">
+          <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-primary/20 text-primary text-xs sm:text-sm font-semibold mb-3 sm:mb-4 border border-primary/30">
             ✨ Our Story
           </span>
-          <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-3 sm:mb-4">
             The Story of G2 Products
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4">
             Built for creators, riders & storytellers
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center mb-10 sm:mb-12 md:mb-16">
           {/* Story Content */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-4 sm:mb-6">
               We started G2 Products with a simple mission: to empower creators in India with genuine, high-quality gear that helps them capture life's best moments.
             </p>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6 sm:mb-8">
               From moto-vloggers chasing mountain sunrises to travel creators documenting hidden gems, we provide the tools that turn your vision into reality. Every product we sell is handpicked, tested, and backed by our commitment to excellence.
             </p>
 
             {/* Values Grid */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {values.map((value, index) => (
                 <motion.div
                   key={value.title}
@@ -57,14 +57,14 @@ export const BrandSection = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="flex items-start gap-3 p-4 rounded-xl bg-secondary/50 border border-border"
+                  className="flex items-start gap-2 sm:gap-3 p-3 sm:p-4 rounded-lg sm:rounded-xl bg-secondary/50 border border-border"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <value.icon className="w-5 h-5 text-primary" />
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <value.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-heading font-bold text-foreground">{value.title}</h4>
-                    <p className="text-sm text-muted-foreground">{value.description}</p>
+                    <h4 className="font-heading font-bold text-sm sm:text-base text-foreground mb-0.5">{value.title}</h4>
+                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{value.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -78,19 +78,19 @@ export const BrandSection = () => {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent rounded-3xl blur-xl" />
-            <div className="relative bg-card border border-border rounded-3xl p-8 md:p-10">
-              <Quote className="w-12 h-12 text-primary/30 mb-6" />
-              <p className="text-xl md:text-2xl text-foreground font-medium leading-relaxed mb-8">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent rounded-2xl sm:rounded-3xl blur-xl" />
+            <div className="relative bg-card border border-border rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10">
+              <Quote className="w-10 h-10 sm:w-12 sm:h-12 text-primary/30 mb-4 sm:mb-6" />
+              <p className="text-lg sm:text-xl md:text-2xl text-foreground font-medium leading-relaxed mb-6 sm:mb-8">
                 "Our goal is simple – be the most trusted destination for creator gear in India. Every camera, every mic, every gimbal we sell carries our promise of quality and genuine support."
               </p>
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center">
-                  <span className="text-2xl font-heading font-bold text-primary">G</span>
+              <div className="flex items-center gap-3 sm:gap-4">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                  <span className="text-xl sm:text-2xl font-heading font-bold text-primary">G</span>
                 </div>
                 <div>
-                  <h4 className="font-heading font-bold text-foreground">Team G2</h4>
-                  <p className="text-muted-foreground text-sm">Founder & Creator Community</p>
+                  <h4 className="font-heading font-bold text-sm sm:text-base text-foreground">Team G2</h4>
+                  <p className="text-muted-foreground text-xs sm:text-sm">Founder & Creator Community</p>
                 </div>
               </div>
             </div>

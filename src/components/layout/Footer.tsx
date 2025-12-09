@@ -26,9 +26,9 @@ const socials = [
 
 export const Footer = () => {
   return (
-    <footer className="bg-g2-darker border-t border-border pt-16 pb-8">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+    <footer className="bg-g2-darker border-t border-border pt-12 sm:pt-16 pb-6 sm:pb-8">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 md:gap-12 mb-8 sm:mb-12">
           {/* Brand */}
           <div>
             <Link to="/" className="flex items-center gap-3 mb-6">
@@ -41,18 +41,18 @@ export const Footer = () => {
                 PRODUCTS
               </span>
             </Link>
-            <p className="text-muted-foreground mb-6 leading-relaxed">
+            <p className="text-muted-foreground text-sm sm:text-base mb-4 sm:mb-6 leading-relaxed">
               India's most trusted store for MotoVlogging & Creator Gear. Premium products, genuine quality.
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-3 sm:gap-4">
               {socials.map((social) => (
                 <a
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300 touch-manipulation"
                 >
-                  <social.icon className="w-5 h-5" />
+                  <social.icon className="w-4 h-4 sm:w-5 sm:h-5" />
                 </a>
               ))}
             </div>
@@ -60,13 +60,13 @@ export const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-heading font-bold text-foreground mb-6">Quick Links</h4>
-            <ul className="space-y-3">
+            <h4 className="font-heading font-bold text-sm sm:text-base text-foreground mb-4 sm:mb-6">Quick Links</h4>
+            <ul className="space-y-2 sm:space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-muted-foreground hover:text-primary transition-colors duration-300"
+                    className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 touch-manipulation"
                   >
                     {link.name}
                   </a>
@@ -77,13 +77,13 @@ export const Footer = () => {
 
           {/* Policies */}
           <div>
-            <h4 className="font-heading font-bold text-foreground mb-6">Policies</h4>
-            <ul className="space-y-3">
+            <h4 className="font-heading font-bold text-sm sm:text-base text-foreground mb-4 sm:mb-6">Policies</h4>
+            <ul className="space-y-2 sm:space-y-3">
               {policies.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-muted-foreground hover:text-primary transition-colors duration-300"
+                    className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 touch-manipulation"
                   >
                     {link.name}
                   </a>
@@ -94,23 +94,23 @@ export const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="font-heading font-bold text-foreground mb-6">Contact Us</h4>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <MapPin className="w-6 h-6 text-primary mt-0.5 flex-shrink-0" />
-                <span className="text-muted-foreground">
+            <h4 className="font-heading font-bold text-sm sm:text-base text-foreground mb-4 sm:mb-6">Contact Us</h4>
+            <ul className="space-y-3 sm:space-y-4">
+              <li className="flex items-start gap-2 sm:gap-3">
+                <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-primary mt-0.5 flex-shrink-0" />
+                <span className="text-xs sm:text-sm text-muted-foreground leading-relaxed break-words">
                   3rd floor, No 11 RS Lane Nagarthpete, Opp. Ram Medical Store, Gollarpet, Kumbarpet, Dodpete, Nagarathpete, Bengaluru, Karnataka 560002, India
                 </span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-primary" />
-                <a href="tel:+918431576033" className="text-muted-foreground hover:text-primary transition-colors">
+              <li className="flex items-center gap-2 sm:gap-3">
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
+                <a href="tel:+918431576033" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors touch-manipulation">
                   +91 84315 76033
                 </a>
               </li>
-              <li className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-primary" />
-                <a href="mailto:hello@g2products.in" className="text-muted-foreground hover:text-primary transition-colors">
+              <li className="flex items-center gap-2 sm:gap-3">
+                <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
+                <a href="mailto:hello@g2products.in" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors touch-manipulation break-all">
                   hello@g2products.in
                 </a>
               </li>
@@ -119,11 +119,11 @@ export const Footer = () => {
         </div>
 
         {/* Bottom */}
-        <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-muted-foreground text-sm">
+        <div className="border-t border-border pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+          <p className="text-muted-foreground text-xs sm:text-sm text-center sm:text-left">
             © 2022 G2 Products. All rights reserved.
           </p>
-          <p className="text-muted-foreground text-sm">
+          <p className="text-muted-foreground text-xs sm:text-sm text-center sm:text-right">
             Made with ❤️ for Creators
           </p>
         </div>

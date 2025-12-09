@@ -60,26 +60,26 @@ export const BestSellersSection = () => {
   const { addItem } = useCart();
 
   return (
-    <section id="bestsellers" className="py-24 bg-g2-darker">
-      <div className="container mx-auto px-4">
+    <section id="bestsellers" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-g2-darker">
+      <div className="container mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-12 md:mb-16"
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-primary/20 text-primary text-sm font-semibold mb-4 border border-primary/30">
+          <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-primary/20 text-primary text-xs sm:text-sm font-semibold mb-3 sm:mb-4 border border-primary/30">
             🔥 Top Picks
           </span>
-          <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-3 sm:mb-4">
             Best Sellers
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4">
             The most loved gear by creators across India
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {products.map((product, index) => (
             <motion.div
               key={product.id}
@@ -97,7 +97,7 @@ export const BestSellersSection = () => {
                   </span>
                 </div>
 
-                <div className="relative h-64 overflow-hidden bg-secondary">
+                <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden bg-secondary">
                   <img
                     src={product.image}
                     alt={product.name}
@@ -106,15 +106,15 @@ export const BestSellersSection = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-60" />
                 </div>
 
-                <div className="p-6">
-                  <h3 className="font-heading font-bold text-lg text-foreground mb-2 group-hover:text-primary transition-colors">
+                <div className="p-4 sm:p-6">
+                  <h3 className="font-heading font-bold text-base sm:text-lg text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
                     {product.name}
                   </h3>
                 </div>
               </Link>
 
-              <div className="px-6 pb-6 flex items-center justify-between">
-                <span className="text-2xl font-bold text-primary">
+              <div className="px-4 sm:px-6 pb-4 sm:pb-6 flex items-center justify-between gap-2">
+                <span className="text-xl sm:text-2xl font-bold text-primary">
                   ₹{product.price.toLocaleString()}
                 </span>
                 <Button
@@ -126,9 +126,9 @@ export const BestSellersSection = () => {
                     price: product.price,
                     image: product.image,
                   })}
-                  className="group-hover:scale-105 transition-transform"
+                  className="group-hover:scale-105 transition-transform min-h-[36px] sm:min-h-[40px] text-xs sm:text-sm touch-manipulation"
                 >
-                  <ShoppingCart className="w-4 h-4 mr-1" />
+                  <ShoppingCart className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
                   Add
                 </Button>
               </div>

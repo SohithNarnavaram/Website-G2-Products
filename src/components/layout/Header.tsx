@@ -172,16 +172,16 @@ export const Header = () => {
           : 'bg-transparent backdrop-blur-none'
       }`}
     >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-14 sm:h-16 md:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-2 sm:gap-3 touch-manipulation">
             <img
               src="/g2.jpg"
               alt="G2 Products"
-              className="w-10 h-10 object-cover border border-border/60"
+              className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 object-cover border border-border/60"
             />
-            <span className="font-heading font-bold text-xl text-white hidden sm:block">
+            <span className="font-heading font-bold text-base sm:text-lg md:text-xl text-white hidden sm:block">
               PRODUCTS
             </span>
           </Link>
@@ -208,11 +208,11 @@ export const Header = () => {
           </nav>
 
           {/* Right Actions */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <Button 
               variant="ghost" 
               size="icon" 
-              className="hidden md:flex text-white hover:text-primary rounded-full bg-white/10 border border-white/20 hover:bg-white/20 hover:border-white/30 backdrop-blur-sm" 
+              className="hidden md:flex text-white hover:text-primary rounded-full bg-white/10 border border-white/20 hover:bg-white/20 hover:border-white/30 backdrop-blur-sm touch-manipulation" 
               asChild
             >
               <Link to="/store">
@@ -223,15 +223,15 @@ export const Header = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="relative text-white hover:text-primary rounded-full bg-white/10 border border-white/20 hover:bg-white/20 hover:border-white/30 backdrop-blur-sm"
+              className="relative text-white hover:text-primary rounded-full bg-white/10 border border-white/20 hover:bg-white/20 hover:border-white/30 backdrop-blur-sm w-9 h-9 sm:w-10 sm:h-10 touch-manipulation"
               onClick={() => setIsOpen(true)}
             >
-              <ShoppingCart className="w-5 h-5" />
+              <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5" />
               {totalItems > 0 && (
                 <motion.span
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-primary-foreground text-xs rounded-full flex items-center justify-center font-bold"
+                  className="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 bg-primary text-primary-foreground text-[10px] sm:text-xs rounded-full flex items-center justify-center font-bold"
                 >
                   {totalItems}
                 </motion.span>
@@ -241,10 +241,10 @@ export const Header = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden text-white hover:text-primary"
+              className="lg:hidden text-white hover:text-primary w-9 h-9 sm:w-10 sm:h-10 touch-manipulation min-h-[44px]"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
             </Button>
           </div>
         </div>
@@ -259,14 +259,14 @@ export const Header = () => {
             exit={{ opacity: 0, height: 0 }}
             className="lg:hidden bg-background/98 backdrop-blur-xl border-b border-border"
           >
-            <nav className="container mx-auto px-4 py-6 flex flex-col gap-4">
+            <nav className="container mx-auto px-4 sm:px-6 py-4 sm:py-6 flex flex-col gap-1 sm:gap-2">
               {navLinks.map((link) => {
                 const active = isActive(link.href, link.isRoute);
                 return (
                   <button
                     key={link.name}
                     onClick={() => handleNavClick(link.href, link.isRoute)}
-                    className={`transition-colors duration-300 font-medium text-lg py-2 text-left ${
+                    className={`transition-colors duration-300 font-medium text-base sm:text-lg py-3 sm:py-2.5 text-left touch-manipulation min-h-[44px] ${
                       active ? 'text-primary' : 'text-foreground hover:text-primary'
                     }`}
                   >

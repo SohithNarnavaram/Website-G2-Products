@@ -14,18 +14,18 @@ export const WhatsAppButton = () => {
       animate={{ scale: 1 }}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className="fixed bottom-6 right-6 z-40 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow overflow-hidden"
+      className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-40 w-12 h-12 sm:w-14 sm:h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow overflow-hidden touch-manipulation"
       aria-label="Chat on WhatsApp"
     >
       <img 
         src="/whatsapp-logo.png" 
         alt="WhatsApp" 
-        className="w-8 h-8 object-contain"
+        className="w-6 h-6 sm:w-8 sm:h-8 object-contain"
       />
       <motion.span
         animate={{ scale: [1, 1.2, 1] }}
         transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute -top-1 -right-1 w-4 h-4 bg-accent rounded-full"
+        className="absolute -top-0.5 -right-0.5 sm:-top-1 sm:-right-1 w-3 h-3 sm:w-4 sm:h-4 bg-accent rounded-full"
       />
     </motion.a>
   );

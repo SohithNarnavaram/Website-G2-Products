@@ -100,19 +100,19 @@ const Store = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      <main className="pt-24 pb-16">
+      <main className="pt-20 sm:pt-24 pb-12 sm:pb-16">
         {/* Hero Banner */}
-        <section className="bg-g2-darker py-16 border-b border-border">
-          <div className="container mx-auto px-4">
+        <section className="bg-g2-darker py-12 sm:py-16 border-b border-border">
+          <div className="container mx-auto px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="text-center"
             >
-              <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-3 sm:mb-4">
                 Shop All Products
               </h1>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-8">
+              <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto mb-6 sm:mb-8 px-4">
                 Premium gear for creators, riders & storytellers. 100% genuine products.
               </p>
               
@@ -165,18 +165,18 @@ const Store = () => {
           </div>
         </section>
 
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
           {/* Search & Filters Bar */}
-          <div className="flex flex-col lg:flex-row gap-4 mb-8">
+          <div className="flex flex-col lg:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
             {/* Search */}
             <div className="relative flex-1">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+              <Search className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground" />
               <Input
                 type="text"
                 placeholder="Search products, brands..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12 h-12 bg-card border-border"
+                className="pl-10 sm:pl-12 h-11 sm:h-12 bg-card border-border text-sm sm:text-base"
               />
             </div>
 
@@ -225,10 +225,10 @@ const Store = () => {
             {/* Mobile Filter Toggle */}
             <Button
               variant="outline"
-              className="lg:hidden h-12"
+              className="lg:hidden h-11 sm:h-12 min-h-[44px] touch-manipulation text-sm sm:text-base"
               onClick={() => setShowFilters(!showFilters)}
             >
-              <SlidersHorizontal className="w-5 h-5 mr-2" />
+              <SlidersHorizontal className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
               Filters
             </Button>
           </div>
@@ -332,14 +332,14 @@ const Store = () => {
 
           {/* Products Grid */}
           {filteredProducts.length === 0 ? (
-            <div className="text-center py-16">
-              <p className="text-muted-foreground text-lg mb-4">No products found</p>
-              <Button variant="outline" onClick={clearFilters}>
+            <div className="text-center py-12 sm:py-16">
+              <p className="text-muted-foreground text-base sm:text-lg mb-4">No products found</p>
+              <Button variant="outline" onClick={clearFilters} className="min-h-[44px] touch-manipulation">
                 Clear filters
               </Button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
               {filteredProducts.map((product, index) => (
                 <motion.div
                   key={product.id}
@@ -360,7 +360,7 @@ const Store = () => {
                   )}
 
                   <Link to={`/products/${product.id}`} className="block">
-                    <div className="relative h-56 overflow-hidden bg-secondary">
+                    <div className="relative h-48 sm:h-56 overflow-hidden bg-secondary">
                       <img
                         src={product.image}
                         alt={product.name}
@@ -369,24 +369,24 @@ const Store = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-60" />
                     </div>
 
-                    <div className="p-5 space-y-2">
+                    <div className="p-4 sm:p-5 space-y-2">
                       <p className="text-xs text-primary font-medium">{product.brand}</p>
-                      <h3 className="font-heading font-bold text-foreground group-hover:text-primary transition-colors line-clamp-1">
+                      <h3 className="font-heading font-bold text-sm sm:text-base text-foreground group-hover:text-primary transition-colors line-clamp-1">
                         {product.name}
                       </h3>
-                      <p className="text-muted-foreground text-sm line-clamp-2">
+                      <p className="text-muted-foreground text-xs sm:text-sm line-clamp-2">
                         {product.description}
                       </p>
                     </div>
                   </Link>
 
-                  <div className="flex items-center justify-between px-5 pb-5">
-                    <div>
-                      <span className="text-xl font-bold text-primary">
+                  <div className="flex items-center justify-between px-4 sm:px-5 pb-4 sm:pb-5 gap-2">
+                    <div className="min-w-0 flex-1">
+                      <span className="text-lg sm:text-xl font-bold text-primary">
                         ₹{product.price.toLocaleString()}
                       </span>
                       {product.originalPrice && (
-                        <span className="text-sm text-muted-foreground line-through ml-2">
+                        <span className="text-xs sm:text-sm text-muted-foreground line-through ml-2">
                           ₹{product.originalPrice.toLocaleString()}
                         </span>
                       )}
@@ -402,9 +402,9 @@ const Store = () => {
                           image: product.image,
                         })
                       }
-                      className="gap-1"
+                      className="gap-1 min-h-[36px] sm:min-h-[40px] text-xs sm:text-sm touch-manipulation flex-shrink-0"
                     >
-                      <ShoppingCart className="w-4 h-4" />
+                      <ShoppingCart className="w-3 h-3 sm:w-4 sm:h-4" />
                       Add
                     </Button>
                   </div>
